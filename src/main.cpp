@@ -1,6 +1,7 @@
 #include <Arduino.h>
 #include "led.h"
 #include "button.h"
+#include "pump_controller.h"
 
 void setup()
 {
@@ -10,7 +11,7 @@ void setup()
     Button::Initialize();
 
     Serial.println("Firmware Learn");
-    Serial.println("Non-blocking hearbeat LED");
+    Serial.println("Pump Controller module added");
 
 }
 
@@ -18,9 +19,6 @@ void loop()
 {
     Button::Update();
     Led::Update();
+    PumpController::Update();
 
-    if (Button::IsPressed())
-    {
-        Led::On();
-    }   
 }
