@@ -3,16 +3,16 @@
 
 void setup()
 {
-   Serial.begin(115200);
-   
-   LedInitialize();
+    Serial.begin(115200);
 
-   Serial.println("Firmware Learn");
-   Serial.println("LED module refactor");
+    LedInitialize();
+
+    Serial.println("Firmware Learn");
+    Serial.println("Non-blocking hearbeat LED");
+
 }
 
 void loop()
 {
-    LedToggle();
-    delay(500);
+    LedUpdate();
 }

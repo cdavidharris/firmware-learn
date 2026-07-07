@@ -1,22 +1,25 @@
 #include <Arduino.h>
-#include <led.h>
+#include "led.h"
 
 namespace
 {
     const uint8_t LED_PIN = LED_BUILTIN;
-   bool ledIsOn = false;
+    const unsigned long HEARTBEAT_INTERVAL_MS = 500;
+
+    bool ledIsOn = false;
+    unsigned long previousToggleTime = 0;
 }
 
 void LedInitialize()
-{ 
-    const uint8_t LED_PIN = LED_BUILTIN;
+{
+    pinMode(LED_PIN, OUTPUT);
     LedOff();
 }
 
 void LedOn()
 {
     ledIsOn = true;
-    digitalWrite(LED_PIN, HIGH);    
+    digitalWrite(LED_PIN, HIGH);
 }
 
 void LedOff()
@@ -27,9 +30,23 @@ void LedOff()
 
 void LedToggle()
 {
-    if (ledIsOn) {
+    if (ledIsOn)
+    {
         LedOff();
-    } else {
+    }
+    else
+    {
         LedOn();
     }
 }
+
+void LedUpdate()
+{
+    unsigned long currentTime = millis();
+    if (currentTime - previousToggleTime >= HEARTBEAT_INTERVAL_MS)
+    {
+        previousToggleTime = currentTime;
+        LedToggle();       
+    }
+}
+
