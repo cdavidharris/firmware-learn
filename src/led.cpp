@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "led.h"
 
-namespace
+namespace 
 {
     const uint8_t LED_PIN = LED_BUILTIN;
     const unsigned long HEARTBEAT_INTERVAL_MS = 500;
@@ -10,43 +10,44 @@ namespace
     unsigned long previousToggleTime = 0;
 }
 
-void LedInitialize()
+void Led::Initialize()
 {
     pinMode(LED_PIN, OUTPUT);
-    LedOff();
+    Off();
 }
 
-void LedOn()
+void Led::On()
 {
     ledIsOn = true;
     digitalWrite(LED_PIN, HIGH);
 }
 
-void LedOff()
+void Led::Off()
 {
     ledIsOn = false;
     digitalWrite(LED_PIN, LOW);
 }
 
-void LedToggle()
+void Led::Toggle()
 {
     if (ledIsOn)
     {
-        LedOff();
+        Off();
     }
     else
     {
-        LedOn();
+        On();
     }
 }
 
-void LedUpdate()
+void Led::Update()
 {
     unsigned long currentTime = millis();
+
     if (currentTime - previousToggleTime >= HEARTBEAT_INTERVAL_MS)
     {
         previousToggleTime = currentTime;
-        LedToggle();       
+        Toggle();       
     }
 }
 

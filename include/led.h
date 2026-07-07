@@ -1,8 +1,10 @@
 #pragma once
 
-    void LedInitialize();
-    void LedOn();
-    void LedOff();
-    void LedToggle();
-    void LedUpdate();
-
+namespace Led
+{
+    void Initialize();
+    void On();
+    void Off();
+    void Toggle();
+    void Update();
+}
