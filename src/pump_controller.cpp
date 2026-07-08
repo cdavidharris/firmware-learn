@@ -10,7 +10,7 @@ namespace
 void PumpController::Initialize()
 {
     // Implementation for pump controller initialization
-    currentState=PumpController::State::Idle;    
+    currentState = PumpController::State::Idle;
 }
 
 void PumpController::Update()

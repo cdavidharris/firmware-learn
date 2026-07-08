@@ -1,7 +1,7 @@
 #include <Arduino.h>
 #include "led.h"
 
-namespace 
+namespace
 {
     const uint8_t LED_PIN = LED_BUILTIN;
     const unsigned long HEARTBEAT_INTERVAL_MS = 500;
@@ -47,7 +47,6 @@ void Led::Update()
     if (currentTime - previousToggleTime >= HEARTBEAT_INTERVAL_MS)
     {
         previousToggleTime = currentTime;
-        Toggle();       
+        Toggle();
     }
 }
-
